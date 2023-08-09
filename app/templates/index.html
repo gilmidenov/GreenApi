@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>GREEN API</h1>
+<div style="display: flex;">
+<div style="width: 50%; padding: 20px;">
+
+    <form action="{% url 'getsettings' %}" method="get">
+        <label>
+            <div class="col-md-6">
+                <input type="text" style="margin-bottom: 1rem" name="idInstance" placeholder="idInstance" value="{{ id_instance }}">
+            </div>
+            <div class="col-md-6">
+                <input type="text" style="margin-bottom: 1rem" name="apiTokenInstance" placeholder="apiTokenInstance" value="{{ api_token_instance }}">
+            </div>
+        </label>
+        <div class="col-md-6">
+            <button type="submit" style="margin-bottom: 1rem">getSettings</button>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" style="margin-bottom: 1rem" formaction="{% url 'GetStateInstance' %}">GetStateInstance</button>
+        </div>
+    </form>
+
+
+    <form action="{% url 'sendMessage' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="idInstance" value="{{ id_instance }}">
+        <input type="hidden" name="apiTokenInstance" value="{{ api_token_instance }}">
+            <div class="col-md-6">
+                <label>
+                    <input type="text" style="margin-bottom: 1rem" name="chatId" placeholder="chatId">
+                </label>
+            </div>
+            <div class="col-md-6">
+                <div class="large-div">
+                    <label>
+                        <textarea rows="5" style="margin-bottom: 1rem; width: 170%;" name="message"
+                                      placeholder="Write your message here..." class="large-textarea"></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <button style="margin-bottom: 1rem" type="submit"  formaction="{% url 'sendMessage' %}?idInstance={{ id_instance }}&apiTokenInstance={{ api_token_instance }}">sendMessage</button>
+            </div>
+    </form>
+
+
+    <form action="{% url 'sendFileByUrl' %}" method="POST">
+            {% csrf_token %}
+        <input type="hidden" name="idInstance" value="{{ id_instance }}">
+        <input type="hidden" name="apiTokenInstance" value="{{ api_token_instance }}">
+                <div class="col-md-6">
+                    <label>
+                        <input type="text" style="margin-bottom: 1rem" name="chatId" placeholder="chatId">
+                    </label>
+                </div>
+            <div class="col-md-6">
+                <div class="large-div">
+                    <label>
+                        <input type="text" style="margin-bottom: 1rem" name="urlFile" placeholder="urlFile">
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" formaction="{% url 'sendFileByUrl' %}?idInstance={{ id_instance }}&apiTokenInstance={{ api_token_instance }}"
+                >sendFileByUrl</button>
+            </div>
+    </form>
+    </div>
+
+
+    <div style="width: 200%; padding: 10px;">
+        <h6>Ответ:</h6>
+        <div class="output-div" style="margin-top: 10px">
+            <label>
+                <textarea rows="15" cols="45" readonly>{{ get_settings }}</textarea>
+            </label>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}
+
