@@ -18,4 +18,4 @@
 ![3](https://github.com/gilmidenov/GreenApi/assets/103640731/1b495d10-635d-4073-b020-e66025c01b7a)
 4. Пользователь последовательно нажимает на кнопки «getSettings», «sendMessage» и видит
 результат работы – сообщения отправляются, ответ методов отображается на странице.
-![4](https://github.com/gilmidenov/GreenApi/assets/103640731/22b64394-67bb-4626-98b1-94da0666bd1f)
+![4](https://github.com/gilmidenov/GreenApi/assets/103640731/3b63ba9e-3564-42c9-9539-6db7edb69e26)
